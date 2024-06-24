@@ -2,7 +2,7 @@
 //  SceneDelegate.swift
 //  Right on target
 //
-//  Created by Василий Усов
+//  Created by USOV Vasily
 //
 
 import UIKit

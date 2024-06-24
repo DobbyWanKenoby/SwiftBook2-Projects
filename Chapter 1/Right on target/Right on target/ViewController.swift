@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  Right on target
 //
-//  Created by Василий Усов
+//  Created by USOV Vasily
 //
 
 import UIKit
@@ -65,8 +65,5 @@ class ViewController: UIViewController {
             self.label.text = String(self.number)
         }
     }
-
-
-
 }
 
