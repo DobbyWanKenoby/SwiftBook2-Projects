@@ -1,7 +1,16 @@
+//
+//  AppDelegate.swift
+//  Right on target
+//
+//  Created by USOV Vasily
+//
+
 import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
+
+
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.

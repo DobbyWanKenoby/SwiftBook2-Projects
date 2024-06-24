@@ -1,3 +1,10 @@
+//
+//  ViewController.swift
+//  Right on target
+//
+//  Created by USOV Vasily
+//
+
 import UIKit
 
 class ViewController: UIViewController {
@@ -14,9 +21,12 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Создаем экземпляр сущности "Игра"
-        game = Game(startValue: 1, endValue: 50, rounds: 5)
+        guard let game = Game(startValue: 1, endValue: 50, rounds: 5) else {
+            fatalError("Не удалось создать класс Game")
+        }
+        self.game = game
         // Обновляем данные о текущем значении загаданного числа
-        updateLabelWithSecretNumber(newText: String(game.currentSecretValue))
+        updateLabelWithSecretNumber(newText: String(game.secretValue))
     }
     
     // MARK: - Взаимодействие View - Model
@@ -24,17 +34,17 @@ class ViewController: UIViewController {
     // Проверка выбранного пользователем числа
     @IBAction func checkNumber() {
         // Высчитываем очки за раунд
-        game.calculateScore(with: Int(slider.value))
+        game.calculateScore(withRoundScore: Int(slider.value))
         // Проверяем, окончена ли игра
         if game.isGameEnded {
             showAlertWith(score: game.score)
-            // Рестартуем игру
+            // Начинаем игру заново
             game.restartGame()
         } else {
             game.startNewRound()
         }
         // Обновляем данные о текущем значении загаданного числа
-        updateLabelWithSecretNumber(newText: String(game.currentSecretValue))
+        updateLabelWithSecretNumber(newText: String(game.secretValue))
     }
     
     // MARK: - Обновление View
@@ -45,14 +55,14 @@ class ViewController: UIViewController {
     }
     
     // Отображение всплывающего окна со счетом
-    private func showAlertWith( score: Int ) {
+    private func showAlertWith(score: Int) {
         let alert = UIAlertController(
                         title: "Игра окончена",
                         message: "Вы заработали \(score) очков",
                         preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Начать заново", style: .default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
+        present(alert, animated: true, completion: nil)
     }
-
 }
+
 
