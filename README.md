@@ -5,3 +5,5 @@
 Для доступа к проектам определенного издания выберите соответствующую ветку данного репозитория.
 
 - [1-е издание](https://github.com/DobbyWanKenoby/SwiftBook2-Projects/tree/release/1th-edition) (2021 г.)
+- [2-е издание](https://github.com/DobbyWanKenoby/SwiftBook2-Projects/tree/release/2nd-edition) (2024 г.)
+ 
