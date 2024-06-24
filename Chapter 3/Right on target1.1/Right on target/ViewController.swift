@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  Right on target
 //
-//  Created by Василий Усов on 
+//  Created by USOV Vasily
 //
 
 import UIKit
@@ -18,6 +18,8 @@ class ViewController: UIViewController {
     var round: Int = 1
     // сумма очков за раунд
     var points: Int = 0
+    
+    // MARK: - VC Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,11 +29,35 @@ class ViewController: UIViewController {
         // устанавливаем загаданное число в метку
         self.label.text = String(self.number)
     }
+    
+    override func loadView() {
+        super.loadView()
+        print("loadView")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("viewWillAppear")
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print("viewDidAppear")
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        print("viewWillDisappear")
+    }
 
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        print("viewDidDisappear")
+    }
     
     @IBAction func checkNumber() {
         // получаем значение на слайдере
-        let numSlider = Int(self.slider.value)
+        let numSlider = Int(self.slider.value.rounded())
         // сравниваем значение с загаданным
         // и подсчитываем очки
         if numSlider > self.number {
@@ -60,6 +86,5 @@ class ViewController: UIViewController {
         // передаем значение случайного числа в label
         self.label.text = String(self.number)
     }
-
 }
 

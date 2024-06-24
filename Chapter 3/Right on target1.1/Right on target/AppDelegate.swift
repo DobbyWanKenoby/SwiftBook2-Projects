@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  Right on target
 //
-//  Created by Василий Усов on 
+//  Created by USOV Vasily
 //
 
 import UIKit
