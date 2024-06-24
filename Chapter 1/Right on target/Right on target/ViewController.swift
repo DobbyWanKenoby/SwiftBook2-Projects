@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  Right on target
 //
-//  Created by Василий Усов on 
+//  Created by Василий Усов
 //
 
 import UIKit
@@ -36,7 +36,6 @@ class ViewController: UIViewController {
         } else {
             // получаем значение на слайдере
             let numSlider = Int(self.slider.value.rounded())
-            print(numSlider)
             // сравниваем значение с загаданным
             // и подсчитываем очки
             if numSlider > self.number {
@@ -46,7 +45,6 @@ class ViewController: UIViewController {
             } else {
                 self.points += 50
             }
-            print("Очки - \(self.points)")
             if self.round == 5 {
                 // выводим информационное окно
                 // с результатами игры
@@ -63,7 +61,7 @@ class ViewController: UIViewController {
             }
             // генерируем случайное число
             self.number = Int.random(in: 1...50)
-      // передаем значение случайного числа в label
+            // передаем значение случайного числа в label
             self.label.text = String(self.number)
         }
     }
