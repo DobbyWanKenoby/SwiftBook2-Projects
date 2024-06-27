@@ -9,8 +9,15 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    // Вспомогательный тип с конфигурационными данными
+    enum Config {
+        static let tryGuessCountsEachRound = 5
+    }
+    
     // Сущность "Игра"
-    private var game = Game(secretValueRange: 1...50, rounds: 5)
+    private var game = {
+        return Game(firstRoundTryGuessCounts: Config.tryGuessCountsEachRound)
+    }()
     
     // Элементы на сцене
     @IBOutlet var slider: UISlider!
@@ -20,9 +27,8 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Обновляем данные о текущем значении загаданного числа
-        updateLabelWithSecretNumber(newText: String(game.secretValue))
+        let secretValue = game.regenerateSecretValue()
+        updateLabelWithSecretNumber(newText: String(secretValue))
     }
     
     // MARK: - Взаимодействие View - Model
@@ -30,17 +36,15 @@ class ViewController: UIViewController {
     // Проверка выбранного пользователем числа
     @IBAction func checkNumber() {
         // Высчитываем очки за раунд
-        game.calculateScore(withRoundScore: Int(slider.value))
+        let resultRound = game.tryGuess(witValue: Int(slider.value))
         // Проверяем, окончена ли игра
-        if game.isGameEnded {
-            showAlertWith(score: game.score)
-            // Начинаем игру заново
-            game.restartGame()
+        if resultRound.isGameEnded {
+            showAlertWith(score: resultRound.score)
         } else {
-            game.startNewRound()
+            let secretValue = game.regenerateSecretValue()
+            // Обновляем данные о текущем значении загаданного числа
+            updateLabelWithSecretNumber(newText: String(secretValue))
         }
-        // Обновляем данные о текущем значении загаданного числа
-        updateLabelWithSecretNumber(newText: String(game.secretValue))
     }
     
     // MARK: - Обновление View
@@ -56,7 +60,10 @@ class ViewController: UIViewController {
                         title: "Игра окончена",
                         message: "Вы заработали \(score) очков",
                         preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Начать заново", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Начать заново", style: .default, handler: { [self] _ in 
+            let newSecretValue = game.startNewRound(withTryCounts: Config.tryGuessCountsEachRound)
+            updateLabelWithSecretNumber(newText: String(newSecretValue))
+        }))
         present(alert, animated: true, completion: nil)
     }
 }

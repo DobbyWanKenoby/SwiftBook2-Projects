@@ -10,7 +10,10 @@ import UIKit
 class ViewController: UIViewController {
     
     // Сущность "Игра"
-    private var game = Game(secretValueRange: 1...50, rounds: 5)
+    private var game = {
+        let generator = Generator(range: 1...50)
+        return Game(generator: generator, rounds: 5)
+    }()
     
     // Элементы на сцене
     @IBOutlet var slider: UISlider!
