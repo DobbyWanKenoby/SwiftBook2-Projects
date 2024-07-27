@@ -112,7 +112,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3855.1339285714284" y="84.057971014492765"/>
+            <point key="canvasLocation" x="3871" y="91"/>
         </scene>
         <!--Color View Controller-->
         <scene sceneID="RHz-fF-eGw">
