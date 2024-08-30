@@ -40,6 +40,11 @@ class ViewController: UIViewController {
         print("viewWillAppear")
     }
     
+    override func viewIsAppearing(_ animated: Bool) {
+        super.viewIsAppearing(animated)
+        print("viewIsAppearing")
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         print("viewDidAppear")
