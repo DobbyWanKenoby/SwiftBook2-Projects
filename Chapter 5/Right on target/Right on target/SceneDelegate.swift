@@ -20,7 +20,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         print("willConnectTo")
         // Шаг 1
         window = UIWindow(frame: UIScreen.main.bounds)
-        print(UIScreen.main.bounds)
         guard let window = window else {
             return
         }
